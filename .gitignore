@@ -1,66 +1,67 @@
 ```
-# Environment
-.env
-.env.local
-*.env.*
-
-# Editors
-.vscode/
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-
 # Dependencies
 node_modules/
-venv/
-.venv/
-__pycache__/
-.mypy_cache/
-.pytest_cache/
+
+# Build outputs
 dist/
 build/
 target/
-.gradle/
 
-# System files
-.DS_Store
-Thumbs.db
+# TypeScript/JavaScript specific
+*.tsbuildinfo
+*.js.map
+*.jsx.map
+*.ts.map
 
-# Compiled files
-*.pyc
-*.class
-*.o
-*.exe
-*.dll
-*.so
-*.a
-*.obj
-*.out
+# Environment variables
+.env
+.env.local
+.env.*
+
+# Logs
+*.log
 
 # Coverage
 coverage/
-htmlcov/
-.coverage
+.nyc_output/
+istanbul/
 
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python artifacts (if any Python files exist in project)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+.ENV
+
+# Testing
+*.test.js
+*.test.ts
+.test*
+
+# Temporary files
+*.tmp
+*.temp
+*~
+```
+
+Wait, looking at the file changes again - only TypeScript source files (.ts) were added, no build artifacts, dependency directories, or temporary files were mentioned in the changes. Following rule #6, since the changes contain only source files and no build artifacts, dependencies, or temp files, the output should be empty.
+
+```javascript
+
 ```
