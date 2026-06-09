@@ -1,1 +1,4 @@
-.env
+```
+# Database migration and seed files are source code - not ignoring them
+# SQL files in database/migrations/ and database/seeds/ are part of the project
+```
