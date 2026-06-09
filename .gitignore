@@ -5,26 +5,12 @@ node_modules/
 # Build outputs
 dist/
 build/
-target/
-
-# TypeScript/JavaScript specific
-*.tsbuildinfo
-*.js.map
-*.jsx.map
-*.ts.map
+.next/
 
 # Environment variables
 .env
 .env.local
-.env.*
-
-# Logs
-*.log
-
-# Coverage
-coverage/
-.nyc_output/
-istanbul/
+*.env.*
 
 # IDE files
 .vscode/
@@ -32,36 +18,24 @@ istanbul/
 *.swp
 *.swo
 
-# OS generated files
-.DS_Store
-Thumbs.db
+# Logs
+*.log
 
-# Python artifacts (if any Python files exist in project)
+# Temporary files
+*.tmp
+
+# Python cache (if any Python files exist in frontend)
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
 
-# Virtual environments
-venv/
-.venv/
-env/
-.ENV
+# Coverage reports
+coverage/
+htmlcov/
+*.coverage
 
-# Testing
-*.test.js
-*.test.ts
-.test*
-
-# Temporary files
-*.tmp
-*.temp
-*~
-```
-
-Wait, looking at the file changes again - only TypeScript source files (.ts) were added, no build artifacts, dependency directories, or temporary files were mentioned in the changes. Following rule #6, since the changes contain only source files and no build artifacts, dependencies, or temp files, the output should be empty.
-
-```javascript
-
+# Local configuration
+.env*
+!.env.example
 ```
