@@ -6,11 +6,12 @@ node_modules/
 dist/
 build/
 .next/
+out/
 
 # Environment variables
 .env
 .env.local
-*.env.*
+.env.*
 
 # IDE files
 .vscode/
@@ -18,24 +19,31 @@ build/
 *.swp
 *.swo
 
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-
-# Python cache (if any Python files exist in frontend)
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
 
-# Coverage reports
-coverage/
-htmlcov/
-*.coverage
+# Logs
+*.log
 
-# Local configuration
-.env*
-!.env.example
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ```
