@@ -1,165 +1,105 @@
-# Carbon Footprint Awareness Platform
+# 🌍 Carbon Footprint Platform
 
-A comprehensive solution that helps individuals understand, track, and reduce their carbon footprint through simple actions and personalized insights.
-
-## 🌱 Features
-
-- **Track Activities**: Log daily activities across transport, energy, food, flights, and shopping
-- **Footprint Analysis**: Visualize your carbon footprint with interactive charts and breakdowns
-- **Personalized Goals**: Set and track carbon reduction goals
-- **Community Challenges**: Join challenges to reduce emissions with others
-- **Smart Insights**: Get AI-powered tips and recommendations
-- **Gamification**: Earn badges and maintain streaks for consistent eco-friendly behavior
-- **Trend Analysis**: Monitor your progress over time with detailed analytics
+A full-stack web application that helps individuals understand, track, and reduce their carbon footprint through personalized insights and actionable goals.
 
 ## 🏗️ Architecture
 
 ```
-carbon-footprint-platform/
-├── frontend/          # Next.js 14+ App Router, TypeScript, TailwindCSS
-├── backend/           # Node.js + Fastify, TypeScript
-├── database/          # PostgreSQL migrations and seeds
-├── tests/             # Unit, integration, and fixture files
-└── docs/              # API documentation and methodology
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Netlify   │────▶│    Render    │────▶│    Neon     │     │   Upstash   │
+│  (Frontend) │     │   (Backend)  │     │  (Postgres) │     │   (Redis)   │
+│   Next.js   │◀────│    Fastify   │◀────│  Database   │     │   Cache     │
+└─────────────┘     └──────────────┘     └─────────────┘     └─────────────┘
 ```
-
-### Tech Stack
-
-**Frontend:**
-- Next.js 14+ (App Router)
-- TypeScript
-- TailwindCSS
-- Zustand (State Management)
-- Recharts (Data Visualization)
-- Axios (API Client)
-
-**Backend:**
-- Node.js + Fastify
-- TypeScript
-- PostgreSQL (Database)
-- Redis (Caching & Sessions)
-- Zod (Validation)
-- JWT (Authentication)
-
-**Infrastructure:**
-- Docker & Docker Compose
-- PostgreSQL 15
-- Redis 7
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+- Node.js 20+
+- npm or yarn
+- Git
 
-- Docker & Docker Compose
-- Node.js 18+ (for local development)
-- npm or pnpm
-
-### Installation
+### Local Development
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone <your-repo-url>
    cd carbon-footprint-platform
    ```
 
-2. **Set up environment variables**
+2. **Install all dependencies**
    ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
+   npm run install:all
    ```
 
-3. **Start all services with Docker Compose**
+3. **Set up environment variables**
+   
+   **Backend** (`backend/.env`):
    ```bash
-   docker-compose up -d
+   cp backend/.env.example backend/.env
+   # Edit with your local database credentials
+   ```
+   
+   **Frontend** (`frontend/.env.local`):
+   ```bash
+   cp frontend/.env.local.example frontend/.env.local
    ```
 
-   This will start:
-   - PostgreSQL on port 5432
-   - Redis on port 6379
-   - Backend API on port 3001
-   - Frontend on port 3000
+4. **Set up the database**
+   - Create a local PostgreSQL database or use Docker
+   - Run migrations from `database/migrations/`
+   - Seed initial data from `database/seeds/`
 
-4. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:3001/api
-   - API Documentation: http://localhost:3001/api/docs
-
-### Local Development (without Docker)
-
-1. **Start database and Redis**
+5. **Start development servers**
    ```bash
-   docker-compose up -d postgres redis
-   ```
-
-2. **Run migrations**
-   ```bash
-   cd database
-   psql -U carbon_user -d carbon_footprint -f migrations/001_create_users.sql
-   # ... run all migration files
-   ```
-
-3. **Start backend**
-   ```bash
-   cd backend
-   npm install
    npm run dev
    ```
+   
+   This starts both frontend (port 3000) and backend (port 8080).
 
-4. **Start frontend**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+## 📁 Project Structure
 
-## 📊 Database Schema
+```
+carbon-footprint-platform/
+├── frontend/              # Next.js application
+│   ├── src/
+│   │   ├── app/          # App Router pages
+│   │   ├── components/   # React components
+│   │   ├── hooks/        # Custom hooks
+│   │   ├── store/        # Zustand state management
+│   │   └── lib/          # Utilities and API client
+│   └── package.json
+│
+├── backend/               # Fastify server
+│   ├── src/
+│   │   ├── routes/       # API endpoints
+│   │   ├── controllers/  # Request handlers
+│   │   ├── services/     # Business logic
+│   │   ├── calculators/  # Carbon calculation logic
+│   │   ├── models/       # Database queries
+│   │   └── middleware/   # Auth, validation, etc.
+│   └── package.json
+│
+├── database/              # SQL migrations and seeds
+│   ├── migrations/
+│   └── seeds/
+│
+├── docs/                  # Documentation
+└── docker-compose.yml     # Local development containers
+```
 
-The platform uses PostgreSQL with the following main tables:
+## ☁️ Deployment (Free Tier)
 
-- `users` - User authentication and accounts
-- `profiles` - User profiles with household and location data
-- `activities` - Logged carbon-emitting activities
-- `footprint_snapshots` - Aggregated footprint data for trends
-- `goals` - User carbon reduction goals
-- `challenges` - Community challenges
-- `user_challenges` - Challenge participation tracking
-- `badges` - Achievement badges
-- `user_badges` - User badge awards
-- `emission_categories` - Emission factor categories
-- `emission_factors` - CO2e calculation factors
+See [docs/deployment-netlify.md](./docs/deployment-netlify.md) for complete deployment instructions.
 
-## 🔌 API Endpoints
+### Quick Deploy Summary
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login user |
-| GET | `/api/profile` | Get user profile |
-| PUT | `/api/profile` | Update profile |
-| GET | `/api/activities` | List activities |
-| POST | `/api/activities` | Log new activity |
-| GET | `/api/footprint` | Get footprint overview |
-| GET | `/api/footprint/breakdown` | Category breakdown |
-| GET | `/api/footprint/trends` | Historical trends |
-| GET | `/api/goals` | List goals |
-| POST | `/api/goals` | Create goal |
-| GET | `/api/challenges` | List challenges |
-| POST | `/api/challenges/:id/join` | Join challenge |
-| GET | `/api/insights` | Get personalized tips |
-
-See [docs/api-reference.md](docs/api-reference.md) for full API documentation.
-
-## 🧮 Carbon Calculation Methodology
-
-Our calculations are based on IPCC (Intergovernmental Panel on Climate Change) emission factors. See [docs/emission-methodology.md](docs/emission-methodology.md) for detailed methodology.
-
-### Categories Tracked
-
-1. **Transport** - Cars, motorcycles, public transit, cycling
-2. **Energy** - Electricity, heating, cooling
-3. **Food** - Diet choices, food waste
-4. **Flights** - Air travel (domestic & international)
-5. **Shopping** - Consumer goods, clothing, electronics
+| Component | Platform | Cost |
+|-----------|----------|------|
+| Frontend | Netlify | Free |
+| Backend | Render | Free (sleeps after 15m) |
+| Database | Neon | Free (0.5GB) |
+| Cache | Upstash | Free (10k commands/day) |
 
 ## 🧪 Testing
 
@@ -167,33 +107,47 @@ Our calculations are based on IPCC (Intergovernmental Panel on Climate Change) e
 # Run all tests
 npm test
 
-# Run unit tests
-npm run test:unit
+# Backend tests only
+npm run test:backend
 
-# Run integration tests
-npm run test:integration
-
-# Run with coverage
-npm run test:coverage
+# Frontend tests only
+npm run test:frontend
 ```
 
-## 📁 Project Structure
+## 🛠️ Tech Stack
 
-See the architecture diagram at the top of this README for complete structure.
+### Frontend
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State**: Zustand
+- **Charts**: Custom SVG components
+- **HTTP Client**: Axios
 
-### Key Directories
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Fastify
+- **Language**: TypeScript
+- **Database**: PostgreSQL
+- **Cache**: Redis
+- **Validation**: Zod
+- **Jobs**: node-cron
 
-- `frontend/src/app` - Next.js pages and routing
-- `frontend/src/components` - Reusable UI components
-- `frontend/src/hooks` - Custom React hooks
-- `frontend/src/store` - Zustand state stores
-- `backend/src/routes` - API route definitions
-- `backend/src/controllers` - Request handlers
-- `backend/src/services` - Business logic
-- `backend/src/calculators` - Carbon calculation engines
-- `backend/src/models` - Database queries
-- `database/migrations` - SQL migration files
-- `database/seeds` - Initial data seeding
+### DevOps
+- **Containerization**: Docker & Docker Compose
+- **CI/CD**: GitHub Actions (optional)
+- **Hosting**: Netlify + Render + Neon + Upstash
+
+## 📊 Features
+
+- ✅ User authentication (JWT)
+- ✅ Carbon footprint calculator (IPCC factors)
+- ✅ Activity tracking (transport, energy, food, shopping)
+- ✅ Personalized goals and challenges
+- ✅ Insights and recommendations engine
+- ✅ Gamification (badges, streaks)
+- ✅ Data visualization (charts, trends)
+- ✅ Mobile-responsive design
 
 ## 🤝 Contributing
 
@@ -205,12 +159,12 @@ See the architecture diagram at the top of this README for complete structure.
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License
 
-## 🌍 Impact
+## 🌱 Impact
 
-Every small action counts. Together, we can make a significant impact on reducing global carbon emissions.
+This platform aims to make carbon footprint tracking accessible and actionable for everyone. By understanding our impact, we can make informed decisions to reduce it.
 
 ---
 
-**Built with ❤️ for a sustainable future**
+Built with ❤️ for a sustainable future
