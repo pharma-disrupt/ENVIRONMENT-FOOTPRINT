@@ -19,43 +19,52 @@ out/
 *.swp
 *.swo
 
-# Python
+# Logs
+*.log
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Testing
+.mypy_cache/
+.pytest_cache/
+.nyc_output/
+coverage/lcov-report/
+
+# Distribution / packaging
 .Python
-env/
-venv/
-.venv/
 pip-log.txt
 pip-delete-this-directory.txt
 .tox/
-.coverage
-.coverage.*
-.cache
+.coverage*
+.cache/
 nosetests.xml
 coverage.xml
 *.cover
 *.log
 *.pot
-*.pyc
-*.pyo
-*.pyd
-.MF
-.TemporaryItems
-.trash
-.lowb
-.DS_Store
-Thumbs.db
+*.py,cover
+.hypothesis/
+cover/
+DerivedData/
 
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# OS generated files
+# System
 .DS_Store
 .DS_Store?
 ._*
