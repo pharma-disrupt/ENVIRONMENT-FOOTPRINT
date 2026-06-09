@@ -28,13 +28,43 @@ __pycache__/
 *.pyo
 *.pyd
 
+# Temporary files
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+
 # Coverage reports
 coverage/
 htmlcov/
 .coverage
 
-# Temporary files
-*.tmp
+# Testing
+.mypy_cache/
+.pytest_cache/
+.nyc_output/
+coverage/lcov-report/
+
+# Distribution / packaging
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+*.pot
+*.py,cover
+.hypothesis/
+cover/
+DerivedData/
+
+# System
 .DS_Store
 Thumbs.db
 
